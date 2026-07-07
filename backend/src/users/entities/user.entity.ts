@@ -1,4 +1,11 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm';
+import { Message } from 'src/messages/entities/message.entity';
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  CreateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -7,6 +14,9 @@ export class User {
 
   @Column({ unique: true })
   username!: string;
+
+  @OneToMany(() => Message, (message) => message.author)
+  messages!: Message[];
 
   @Column({ unique: true })
   email!: string;
