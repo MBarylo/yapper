@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Column,
 } from 'typeorm';
 
 @Entity()
@@ -21,6 +22,9 @@ export class Chat {
   @ManyToMany(() => User)
   @JoinTable()
   participants!: User[];
+
+  @Column({ unique: true })
+  uniqueKey!: string;
 
   @CreateDateColumn()
   createdAt!: Date;
